@@ -64,17 +64,26 @@ Knowing that every person in your team needs to understand the code, how do you 
 
 
 Cooperative
+
 Make a list of each parson’s strengths.
 How can you best utilize these strengths in the development of your application?
 In what areas do you each want to develop greater strength?
 Knowing that every person in your team needs to understand the code, how do you plan to approach the day-to-day development?
 
-Name of feature: 
+# Time Estimates
 
-Estimate of time needed to complete: one hore
+Name of feature: #1 storage.
 
-Start time: 12:15
+Estimate of time needed to complete: 2 hours
 
-Finish time: _____
+Start time: 1:45
 
-Actual time needed to complete: _____
+Finish time: 
+
+Actual time needed to complete: 35 mins
+
+
+
+
+
+-
