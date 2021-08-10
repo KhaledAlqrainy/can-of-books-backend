@@ -79,3 +79,16 @@ Start time: 3:15
 Finish time: 5:15
 
 Actual time needed to complete: 2 hrs.
+
+--- 
+
+
+Name of feature: #3 Delete.
+
+Estimate of time needed to complete: 3 hours
+
+Start time: 6:00
+
+Finish time: 10:00
+
+Actual time needed to complete: 4 hrs
