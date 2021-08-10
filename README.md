@@ -67,3 +67,15 @@ Start time: 1:45
 Finish time: 4:00
 
 Actual time needed to complete: 2 hrs and 15 min.
+
+---
+
+Name of feature: #2 Create.
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 3:15
+
+Finish time: 5:15
+
+Actual time needed to complete: 2 hrs.

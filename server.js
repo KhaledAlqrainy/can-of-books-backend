@@ -4,13 +4,16 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-// const jwt = require('jsonwebtoken');
-// const jwksClient = require('jwks-rsa');
 const app = express();
 app.use(cors());
+app.use(express.json());
 const PORT = process.env.PORT;
 const BookSchema = require("./modules/BookSchema");
 const getBooks = require("./modules/GetBooks");
+// const postBooks = require("./modules/postBooks");
+
+//////////////////////////////////////////////////////////////////////
+
 mongoose.connect("mongodb://localhost:27017/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -45,8 +48,41 @@ function seedBook() {
 
 // seedBook()
 
-// http://localhost3001/books
+// http://localhost:3001/books
 app.get("/books", getBooks);
+
+// http://localhost:3001/books
+app.post("/addBooks", postBooks);
+
+function postBooks(req, res) {
+  const { email, title, description, status } = req.body;
+  BookSchema.find({ email: email }, (err, resultBooks) => {
+    if (resultBooks.length == 0 || err) {
+      res.status(404).send("cant find any user");
+    } else {
+      const newObj = {
+        title: title,
+        description: description,
+        status: status,
+        email: email,
+      };
+      resultBooks.push(newObj);
+      let bookArr = resultBooks.map((i) => {
+        return new BooksManipulator(i);
+      });
+      res.send(bookArr);
+      BookSchema.insertMany(newObj);
+    }
+  });
+}
+
+class BooksManipulator {
+  constructor(i) {
+    this.title = i.title;
+    this.description = i.description;
+    this.status = i.status;
+  }
+}
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
