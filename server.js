@@ -14,7 +14,7 @@ const getBooks = require("./modules/GetBooks");
 
 //////////////////////////////////////////////////////////////////////
 
-mongoose.connect("mongodb://localhost:27017/test", {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -54,22 +54,21 @@ app.get("/books", getBooks);
 // http://localhost:3001/books
 app.post("/books", postBooks);
 
-app.delete("/books/:id", deleteBook)
+app.delete("/books/:id", deleteBook);
 
-async function deleteBook (req,res) {
+async function deleteBook(req, res) {
   const id = req.params.id;
   const email = req.query.email;
 
-  await BookSchema.deleteOne({email:email, _id:id})
+  await BookSchema.deleteOne({ email: email, _id: id });
 
-  BookSchema.find({email:email} , (err,result)=>{
+  BookSchema.find({ email: email }, (err, result) => {
     if (result.length == 0 || err) {
       res.status(404).send("cant find any user");
     } else {
       res.send(result);
     }
-  })
-
+  });
 }
 
 function postBooks(req, res) {
