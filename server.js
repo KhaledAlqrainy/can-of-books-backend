@@ -115,31 +115,24 @@ class BooksManipulator {
   }
 }
 
-
-async function updateBook (req,res) {
-
+async function updateBook(req, res) {
   const { email, title, description, status } = req.body;
   const id = req.params.id;
   console.log(typeof id);
-  console.log(req.body);
-  
-  await BookSchema.updateOne(
-    {_id:id}, {title: title,
-    description: description,
-    status: status,
-    email: email,
-  })
-  
-    BookSchema.find({_id:id}, (err,result) => {
-      if (err){
-        res.send(500, 'Book Not Found')
-      }
-      else {
-        res.send(result)
-      }
-    })
-}
 
+  await BookSchema.updateOne(
+    { _id: id },
+    { title: title, description: description, status: status, email: email }
+  );
+
+  BookSchema.find({ _id: id }, (err, result) => {
+    if (err) {
+      res.send(500, "Book Not Found");
+    } else {
+      res.send(result);
+    }
+  });
+}
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
