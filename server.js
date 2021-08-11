@@ -74,8 +74,20 @@ async function deleteBook(req, res) {
 function postBooks(req, res) {
   const { email, title, description, status } = req.body;
   BookSchema.find({ email: email }, (err, resultBooks) => {
-    if (resultBooks.length == 0 || err) {
-      res.status(404).send("cant find any user");
+    if (resultBooks.length == 0) {
+      // res.status(404).send("cant find any user");
+      const newObj = {
+        title: title,
+        description: description,
+        status: status,
+        email: email,
+      };
+      resultBooks.push(newObj);
+      let bookArr = resultBooks.map((i) => {
+        return new BooksManipulator(i);
+      });
+      res.send(bookArr);
+      BookSchema.insertMany(newObj);
     } else {
       const newObj = {
         title: title,
